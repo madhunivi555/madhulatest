@@ -26,11 +26,6 @@ pipeline {
                 sh 'mvn package'
             }    
         }
-        stage ('Reporting Junit') {
-            steps {
-                cucumber failedFeaturesNumber: -1, failedScenariosNumber: -1, failedStepsNumber: -1, fileIncludePattern: '**/*.json', pendingStepsNumber: -1, skippedStepsNumber: -1, sortingMethod: 'ALPHABETICAL', undefinedStepsNumber: -1
-            }    
-        }
         stage ('Deploy war file in to Apache tomcat') {
             steps {
                  sshagent(['pop']) {
@@ -38,5 +33,10 @@ pipeline {
                  }
             }    
        }
+       stage ('Reporting Junit') {
+            steps {
+                cucumber failedFeaturesNumber: -1, failedScenariosNumber: -1, failedStepsNumber: -1, fileIncludePattern: '**/*.json', pendingStepsNumber: -1, skippedStepsNumber: -1, sortingMethod: 'ALPHABETICAL', undefinedStepsNumber: -1
+            }    
+        } 
    }
 }    
