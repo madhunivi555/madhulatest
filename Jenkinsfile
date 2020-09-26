@@ -21,6 +21,11 @@ pipeline {
                 sh 'mvn compile'
             }    
         }
+        stage ('Package') {
+            steps {
+                sh 'mvn package'
+            }    
+        }
         stage ('Deploy war file in to Apache tomcat') {
             steps {
                  sshagent(['pop']) {
