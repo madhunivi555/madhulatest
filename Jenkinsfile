@@ -8,7 +8,17 @@ pipeline {
         }
         stage ('Build Code') {
             steps {
-                sh 'mvn clean package'
+                sh 'mvn clean'
+            }    
+        }
+        stage ('Test') {
+            steps {
+                sh 'mvn test'
+            }    
+        }
+        stage ('Compile') {
+            steps {
+                sh 'mvn compile'
             }    
         }
         stage ('Deploy war file in to Apache tomcat') {
